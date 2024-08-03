@@ -1,0 +1,15 @@
+<h4>Album Mới</h4>
+<div class="album-list">
+  <div class="album-item" *ngFor="let album of albums" (click)="goToAlbumDetails(album.id)">
+    <div class="album-image-container">
+      <img [src]="album.hinhAnh" alt="{{ album.ten }}" class="album-image">
+      <button class="play-icon" >
+        <i class="fa fa-play-circle"></i>
+      </button>
+    </div>
+    <div class="album-details">
+      <h4 class="album-title">{{ album.ten }}</h4>
+      <p class="album-artist">{{ album.ngheSi.ten }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<!-- template của component -->
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="searchTen" placeholder="Tìm kiếm album">
+            <button class="btn btn-primary" (click)="searchAlbum()">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#albumModal">
+            Thêm Album
+        </button>
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Hình Ảnh</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Nghệ Sĩ</th>
+            <th scope="col">Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let album of albums">
+            <td>{{album.id}}</td>
+            <td><img [src]="album.hinhAnh" alt="Hình ảnh" width="70" height="70"></td>
+            <td>{{album.ten}}</td>
+            <td>{{album.ngheSi.ten}}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" [routerLink]="['/album', album.id]">Sửa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i">
+        <a class="page-link" (click)="goToPage(i)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+<!-- Modal for adding album -->
+<div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Album</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addAlbum()" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="ma" class="form-label">Mã Album</label>
+                        <input type="text" class="form-control" id="ma" name="ma" placeholder="Nhập Mã Album"
+                            [(ngModel)]="newAlbum.ma">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ten" class="form-label">Tên Album</label>
+                        <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập Tên Album"
+                            [(ngModel)]="newAlbum.ten">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nghệ Sĩ</label>
+                        <select class="form-select" aria-label="Default select example" name="ngheSi"
+                            [(ngModel)]="newAlbum.ngheSi.id">
+                            <option *ngFor="let ngheSi of ngheSis" [value]="ngheSi.id">{{ngheSi.ten}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hinhAnhNS" class="form-label">Hình Ảnh</label>
+                        <input type="file" class="form-control" id="hinhAnhNS" (change)="onFileSelected($event)">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

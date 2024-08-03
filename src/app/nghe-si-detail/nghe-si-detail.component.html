@@ -1,0 +1,31 @@
+<div *ngIf="ngheSi">
+    <h2>Sửa Nghệ Sĩ</h2>
+    <form (ngSubmit)="updateNgheSi()">
+      <div class="mb-3">
+        <label for="maTL" class="form-label">Mã Nghệ Sĩ</label>
+        <input type="text" class="form-control" id="maTL" name="ma" 
+               [(ngModel)]="ngheSi.ma" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="tenTL" class="form-label">Tên Nghệ Sĩ</label>
+        <input type="text" class="form-control" id="tenTL" name="ten" 
+               [(ngModel)]="ngheSi.ten">
+      </div>
+      <div class="mb-3">
+        <label for="moTa" class="form-label">Mô Tả</label>
+        <textarea class="form-control" id="moTa" name="moTa" rows="3"
+                  [(ngModel)]="ngheSi.moTa"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="hinhAnhNS" class="form-label">Hình Ảnh</label>
+        <input type="file" class="form-control" id="hinhAnhNS"
+            (change)="onFileSelected($event)">
+        <img *ngIf="ngheSi.hinhAnh" [src]="ngheSi.hinhAnh" alt="Hình ảnh hiện tại" style="max-width: 100px; margin-top: 10px;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="navigateToHome()">Đóng</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </form>
+  </div>
+  

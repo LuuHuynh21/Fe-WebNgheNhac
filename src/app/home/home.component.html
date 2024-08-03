@@ -1,0 +1,99 @@
+<div class="container">
+    <img src="assets/images/anhchill.png" alt="Khung cảnh đêm yên bình" class="image-container">
+    <div class="text">
+        <h5>Nghe Nhạc Huỳnh Music</h5>
+        <p>Khám phá, nghe trực tuyến âm nhạc từ các ca sĩ nổi tiếng trên khắp thế giới.</p>
+    </div>
+</div>
+<div class="search-container">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm nghệ sĩ, album, bài hát"
+            aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Tìm kiếm</button>
+    </form>
+</div>
+
+<div>
+    <h4 class="heading-with-pagination1">
+        Nghe Gì Hôm Nay?
+        <div class="pagination-controls1">
+            <button (click)="previousPageBaiHat()" [disabled]="currentPageBaiHat === 0">
+                <i class="fa fa-arrow-left"></i>
+            </button>
+            <button (click)="nextPageBaiHat()" [disabled]="currentPageBaiHat >= totalPagesBaiHat - 1">
+                <i class="fa fa-arrow-right"></i>
+            </button>
+        </div>
+    </h4>
+    <div class="song-list">
+        <div class="song-item" *ngFor="let baihat of baiHats; let i = index">
+            <div class="image-container1">
+                <img [src]="baihat.ngheSi.hinhAnh" alt="{{ baihat.ngheSi.ten }}" class="artist-image">
+                <button (click)="playSong(baihat)" class="play-button">
+                    <i class="fa fa-play"></i>
+                </button>
+            </div>
+            <div class="song-details">
+                <h4>{{ baihat.ten }}</h4>
+                <p>{{ baihat.ngheSi.ten }}</p>
+            </div>
+            <div class="song-luotnghe">
+                <i class="fa fa-headphones"></i>
+                {{ baihat.luotNghe }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h4 class="heading-with-pagination">
+        List Album
+        <div class="pagination-controls">
+            <button (click)="previousPageAlbum()" [disabled]="currentPageAlbum === 0">
+                <i class="fa fa-arrow-left"></i>
+            </button>
+            <button (click)="nextPageAlbum()" [disabled]="currentPageAlbum >= totalPagesAlbum - 1">
+                <i class="fa fa-arrow-right"></i>
+            </button>
+        </div>
+    </h4>
+    <div class="album-list">
+        <div class="album-item" *ngFor="let album of albums" (click)="goToAlbumDetails(album.id)">
+            <div class="album-image-container">
+                <img [src]="album.hinhAnh" alt="{{ album.ten }}" class="album-image">
+                <button class="play-icon">
+                    <i class="fa fa-play-circle"></i>
+                </button>
+            </div>
+            <div class="album-details">
+                <h4 class="album-title">{{ album.ten }}</h4>
+                <p class="album-artist">{{ album.ngheSi.ten }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="song-list1">
+        <div *ngFor="let theLoai of theLoais" class="genre-section">
+          <h4>Thể Loại {{ theLoai.ten }}</h4>
+          <div class="song-item-container1">
+            <div *ngFor="let baiHat of baiHatsByGenre[+theLoai.id]" class="song-item" (click)="playSong(baiHat)">
+              <div class="image-container1">
+                <img [src]="baiHat.ngheSi.hinhAnh" alt="{{ baiHat.ten }}" class="artist-image">
+                <button class="play-button">
+                  <i class="fa fa-play"></i>
+                </button>
+                <div class="song-luotnghe1">
+                  <i class="fa fa-headphones"></i>
+                  {{ baiHat.luotNghe }}
+                </div>
+              </div>
+              <div class="song-details1">
+                <h4>{{ baiHat.ten }}</h4>
+                <p>{{ baiHat.ngheSi.ten }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="album">
+    <h2>Sửa Album</h2>
+    <form (ngSubmit)="updateAlbum()">
+      <div class="mb-3">
+        <label for="maTL" class="form-label">Mã Album</label>
+        <input type="text" class="form-control" id="maTL" name="ma" [(ngModel)]="album.ma" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="tenTL" class="form-label">Tên Album</label>
+        <input type="text" class="form-control" id="tenTL" name="ten" [(ngModel)]="album.ten">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nghệ Sĩ</label>
+        <select class="form-select" aria-label="Default select example" name="ngheSi" [(ngModel)]="album.ngheSi.id">
+            <option *ngFor="let ngheSi of ngheSis" [value]="ngheSi.id">{{ngheSi.ten}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="hinhAnhNS" class="form-label">Hình Ảnh</label>
+        <input type="file" class="form-control" id="hinhAnhNS" (change)="onFileSelected($event)">
+        <img *ngIf="album.hinhAnh" [src]="album.hinhAnh" alt="Hình ảnh hiện tại" style="max-width: 100px; margin-top: 10px;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="navigateToHome()">Đóng</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<div *ngIf="baiHat">
+    <h2>Sửa Bài Hát</h2>
+    <form (ngSubmit)="updateBaiHat()">
+      <div class="mb-3">
+        <label for="maBH" class="form-label">Mã Bài Hát</label>
+        <input type="text" class="form-control" id="maBH" name="ma" [(ngModel)]="baiHat.ma" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="tenBH" class="form-label">Tên Bài Hát</label>
+        <input type="text" class="form-control" id="tenBH" name="ten" [(ngModel)]="baiHat.ten">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nghệ Sĩ</label>
+        <select class="form-select" aria-label="Default select example" name="ngheSi" [(ngModel)]="baiHat.ngheSi.id">
+          <option *ngFor="let ngheSi of ngheSis" [value]="ngheSi.id">{{ngheSi.ten}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Album</label>
+        <select class="form-select" aria-label="Default select example" name="album" [(ngModel)]="baiHat.album.id">
+          <option *ngFor="let album of albums" [value]="album.id">{{album.ten}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Thể Loại</label>
+        <select class="form-select" aria-label="Default select example" name="theLoai" [(ngModel)]="baiHat.theLoai.id">
+          <option *ngFor="let theLoai of theLoais" [value]="theLoai.id">{{theLoai.ten}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="mp3BH" class="form-label">Bài Hát</label>
+        <input type="file" class="form-control" id="mp3BH" (change)="onFileSelected($event)">
+        <audio *ngIf="baiHat.url" controls [src]="baiHat.url" ></audio>
+      </div>
+      <div class="mb-3">
+        <label for="thoiLuong" class="form-label">Thời Lượng</label>
+        <input type="text" class="form-control" id="thoiLuong" name="thoiLuong" [(ngModel)]="baiHat.thoiLuong">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="navigateToHome()">Đóng</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </form>
+  </div>
+  

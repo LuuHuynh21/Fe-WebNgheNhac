@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Để các phần tử tự động xuống dòng nếu không đủ không gian */
+  }
+  
+  .card-container {
+    flex: 1 1 25%; /* Chiếm 25% chiều rộng của container */
+    padding: 10px;
+  }
+  

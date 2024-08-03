@@ -1,0 +1,404 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    max-width: 100%;
+}
+.image-container {
+    width: 100%;
+    height: 300px;
+}
+.text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    font-size: 24px;
+    width: 80%;
+    color: white;
+}
+h5 {
+    margin: 0;
+    font-size: 36px;
+    color: #f0f0f0;
+}
+p {
+    margin: 10px 0 0;
+    font-size: 20px;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.search-container form {
+    display: flex;
+    width: 80%;
+    max-width: 800px;
+}
+.search-container input {
+    flex: 1;
+    border-radius: 0;
+}
+.search-container button {
+    border-radius: 0;
+}
+
+/* Bài Hát */
+.song-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Thêm cuộn ngang nếu cần */
+    padding: 10px;
+    gap: 15px; /* Khoảng cách giữa các bài hát */
+}
+
+.song-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px; /* Đảm bảo mỗi bài hát có kích thước tối thiểu */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.song-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  .image-container1 {
+    position: relative;
+    width: 150px; /* Kích thước giống như .album-image-container */
+    height: 150px;
+  }
+  
+  .artist-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    outline: none;
+    opacity: 0; /* Ẩn biểu tượng play ban đầu */
+    transition: opacity 0.3s ease;
+}
+
+.song-item:hover .play-button {
+    opacity: 1; /* Hiển thị biểu tượng play khi di chuột vào bài hát */
+}
+  .song-details {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .song-details h4 {
+    margin: 8px 0 4px;
+    font-size: 1rem; /* Kích thước chữ giống như .album-title */
+    color: #333;
+  }
+  
+  .song-details p {
+    margin: 0;
+    font-size: 0.9rem; /* Kích thước chữ giống như .album-artist */
+    color: #666;
+  }
+  
+  .song-luotnghe {
+    font-size: 0.9rem;
+    color: #f0f0f0;
+    position: absolute;
+    top: 0px; /* Đặt số lượt nghe ở góc trên cùng */
+    right: 0px; /* Đặt số lượt nghe ở góc phải */
+    display: flex;
+    align-items: center;
+    background-color: rgba(121, 120, 120, 0.7);;
+    padding: 5px 10px; /* Padding để tạo khoảng cách giữa nội dung và nền */
+    border-radius: 5px; /* Bo góc để nền đẹp hơn */
+}
+
+.song-luotnghe i {
+    margin-right: 5px; /* Khoảng cách giữa biểu tượng tai nghe và số lượt nghe */
+}
+.heading-with-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination-controls button {
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-controls button:disabled {
+    border: 2px solid #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls button i {
+    font-size: 24px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+
+
+/* Album */
+.album-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 calc(20% - 15px);
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.album-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+}
+
+.album-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.album-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.album-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.play-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    outline: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.album-image-container:hover .play-icon {
+    opacity: 1;
+}
+
+.album-details {
+    text-align: center;
+    width: 100%;
+}
+
+.album-title {
+    margin: 8px 0 4px;
+    font-size: 1rem;
+}
+
+.album-artist {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+.heading-with-pagination1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-controls1 {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination-controls1 button {
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-controls1 button:disabled {
+    border: 2px solid #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls1 button i {
+    font-size: 24px;
+}
+
+.pagination-controls1 button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+/* Thể Loại */
+.song-list1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.genre-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.genre-section h2 {
+    margin-bottom: 10px;
+}
+
+.song-item-container1 {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+}
+
+.song-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.song-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-container1 {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.artist-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    outline: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.song-item:hover .play-button {
+    opacity: 1;
+}
+
+.song-details1 {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.song-details1 h4 {
+    margin: 8px 0 4px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.song-details1 p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.song-luotnghe1 {
+    font-size: 0.9rem;
+    color: #f0f0f0;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(121, 120, 120, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.song-luotnghe1 i {
+    margin-right: 5px;
+}

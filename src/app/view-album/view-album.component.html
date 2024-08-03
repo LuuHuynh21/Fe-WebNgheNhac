@@ -1,0 +1,13 @@
+<h4>Bài Hát Trong Album</h4>
+<div class="baihat-list">
+  <div class="baihat-item" *ngFor="let baiHat of baiHats">
+    <img src="{{ baiHat.ngheSi.hinhAnh }}" alt="{{ baiHat.ten }}">
+    <div class="baihat-details">
+      <div>
+        <h4 class="baihat-title">{{ baiHat.ten }}</h4>
+        <p class="baihat-artist">{{ baiHat.ngheSi.ten }}</p>
+      </div>
+      <button (click)="playSong(baiHat)">▶️</button>
+    </div>
+  </div>
+</div>

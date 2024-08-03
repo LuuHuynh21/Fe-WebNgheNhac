@@ -1,0 +1,87 @@
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="searchTen" placeholder="Tìm kiếm nghệ sĩ">
+            <button class="btn btn-primary" (click)="searchNgheSi()">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ngheSiModal">
+            Thêm Nghệ Sĩ
+        </button>
+    </div>
+</div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Mô Tả</th>
+                    <th scope="col">Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ngheSi of ngheSis">
+                    <td>{{ngheSi.id}}</td>
+                    <td><img [src]="ngheSi.hinhAnh" alt="Hình ảnh" width="70" height="70"></td>
+                    <td>{{ngheSi.ten}}</td>
+                    <td>{{ngheSi.moTa}}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" [routerLink]="['/nghesi', ngheSi.id]">Sửa</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+              </li>
+              <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i">
+                <a class="page-link" (click)="goToPage(i)">{{ i + 1 }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+        <div class="modal fade" id="ngheSiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Nghệ Sĩ</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form (ngSubmit)="addNgheSi()" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="maNS" class="form-label">Mã Nghệ Sĩ</label>
+                                <input type="text" class="form-control" id="maNS" name="ma"
+                                    placeholder="Nhập Mã Nghệ Sĩ" [(ngModel)]="newNgheSi.ma">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tenNS" class="form-label">Tên Nghệ Sĩ</label>
+                                <input type="text" class="form-control" id="tenNS" name="ten"
+                                    placeholder="Nhập Tên Nghệ Sĩ" [(ngModel)]="newNgheSi.ten">
+                            </div>
+                            <div class="mb-3">
+                                <label for="moTa" class="form-label">Mô Tả</label>
+                                <textarea class="form-control" id="moTa" name="moTa" rows="3"
+                                    [(ngModel)]="newNgheSi.moTa"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="hinhAnhNS" class="form-label">Hình Ảnh</label>
+                                <input type="file" class="form-control" id="hinhAnhNS"
+                                    (change)="onFileSelected($event)">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

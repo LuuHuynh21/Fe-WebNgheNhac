@@ -1,0 +1,18 @@
+<h4>Top Bài Hát Mới</h4>
+<div class="song-item" *ngFor="let baihat of baiHats; let i = index">
+  <div class="song-index">{{ i + 1 }}</div>
+  <div class="image-container">
+    <img [src]="baihat.ngheSi.hinhAnh" alt="{{ baihat.ngheSi.ten }}" class="artist-image">
+    <button (click)="playSong(baihat)" class="play-button">
+      <i class="fa fa-play"></i>
+    </button>
+  </div>
+  <div class="song-details">
+    <h4>{{ baihat.ten }}</h4>
+    <p>{{ baihat.ngheSi.ten }}</p>
+  </div>
+  <div class="album-name">{{ baihat.album.ten }}</div> <!-- Thêm phần tử tên album -->
+  <div class="song-duration">
+    <p>{{ baihat.thoiLuong }}</p>
+  </div>
+</div>

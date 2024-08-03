@@ -1,0 +1,114 @@
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="searchTen" placeholder="Tìm kiếm bài hát">
+            <button class="btn btn-primary" (click)="searchBaiHat()">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#albumModal">
+            Thêm Bài Hát
+        </button>
+    </div>
+</div>
+        <table class="table table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Nghệ Sĩ</th>
+                    <th scope="col">Thể Loại</th>
+                    <th scope="col">Bài Hát</th>
+                    <th scope="col">Thời Lượng</th>
+                    <th scope="col">Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let baihat of baiHats">
+                    <td>{{baihat.id}}</td>
+                    <td>{{baihat.ten}}</td>
+                    <td>{{baihat.album.ten}}</td>
+                    <td>{{baihat.ngheSi.ten}}</td>
+                    <td>{{baihat.theLoai.ten}}</td>
+                    <td><audio controls [src]="baihat.url"></audio></td>
+                    <td>{{baihat.thoiLuong}}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" [routerLink]="['/baihat', baihat.id]">Sửa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+              </li>
+              <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i">
+                <a class="page-link" (click)="goToPage(i)">{{ i + 1 }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+        <div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Bài Hát</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form (ngSubmit)="addAlbum()" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="ma" class="form-label">Mã Bài Hát</label>
+                                <input type="text" class="form-control" id="ma" name="ma" placeholder="Nhập Mã Bài Hát"
+                                    [(ngModel)]="newBaiHat.ma">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ten" class="form-label">Tên Bài Hát</label>
+                                <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập Tên Bài Hát"
+                                    [(ngModel)]="newBaiHat.ten">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Album</label>
+                                <select class="form-select" aria-label="Default select example" name="album"
+                                    [(ngModel)]="newBaiHat.album.id">
+                                    <option *ngFor="let album of albums" [value]="album.id">{{album.ten}}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nghệ Sĩ</label>
+                                <select class="form-select" aria-label="Default select example" name="ngheSi"
+                                    [(ngModel)]="newBaiHat.ngheSi.id">
+                                    <option *ngFor="let ngheSi of ngheSis" [value]="ngheSi.id">{{ngheSi.ten}}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Thể Loại</label>
+                                <select class="form-select" aria-label="Default select example" name="theLoai"
+                                    [(ngModel)]="newBaiHat.theLoai.id">
+                                    <option *ngFor="let theLoai of theLoais" [value]="theLoai.id">{{theLoai.ten}}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="mp3BH" class="form-label">Url</label>
+                                <input type="file" class="form-control" id="mp3BH" (change)="onFileSelected($event)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tl" class="form-label">Thời Lượng</label>
+                                <input type="text" class="form-control" id="tl" name="thoiLuong"
+                                    [(ngModel)]="newBaiHat.thoiLuong">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+   

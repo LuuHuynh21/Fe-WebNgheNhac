@@ -1,0 +1,25 @@
+<div *ngIf="theLoai">
+    <h2>Sửa Thể Loại</h2>
+    <form (ngSubmit)="updateTheLoai()">
+      <div class="mb-3">
+        <label for="maTL" class="form-label">Mã Thể Loại</label>
+        <input type="text" class="form-control" id="maTL" name="ma" placeholder="Nhập Mã Thể Loại"
+               [(ngModel)]="theLoai.ma" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="tenTL" class="form-label">Tên Thể Loại</label>
+        <input type="text" class="form-control" id="tenTL" name="ten" placeholder="Nhập Tên Thể Loại"
+               [(ngModel)]="theLoai.ten">
+      </div>
+      <div class="mb-3">
+        <label for="moTa" class="form-label">Mô Tả</label>
+        <textarea class="form-control" id="moTa" name="moTa" rows="3"
+                  [(ngModel)]="theLoai.moTa"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="navigateToHome()">Đóng</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </form>
+  </div>
+  

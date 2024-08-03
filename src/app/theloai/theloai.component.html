@@ -1,0 +1,82 @@
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="searchTen" placeholder="Tìm kiếm thể loại">
+            <button class="btn btn-primary" (click)="searchTheLoai()">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#theLoaiModal">
+            Thêm Thể Loại
+        </button>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Mô tả</th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let theloai of theloais">
+            <td>{{theloai.id}}</td>
+            <td>{{theloai.ten}}</td>
+            <td>{{theloai.moTa}}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" [routerLink]="['/theloai', theloai.id]">Sửa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+            <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+            [class.active]="currentPage === i">
+            <a class="page-link" (click)="goToPage(i)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+            <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="modal fade" id="theLoaiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Thể Loại</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addTheLoai()">
+                    <div class="mb-3">
+                        <label for="maTL" class="form-label">Mã Thể Loại</label>
+                        <input type="text" class="form-control" id="maTL" name="ma" placeholder="Nhập Mã Thể Loại"
+                            [(ngModel)]="newTheLoai.ma">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tenTL" class="form-label">Tên Thể Loại</label>
+                        <input type="text" class="form-control" id="tenTL" name="ten" placeholder="Nhập Tên Thể Loại"
+                            [(ngModel)]="newTheLoai.ten">
+                    </div>
+                    <div class="mb-3">
+                        <label for="moTa" class="form-label">Mô Tả</label>
+                        <textarea class="form-control" id="moTa" name="moTa" rows="3"
+                            [(ngModel)]="newTheLoai.moTa"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
