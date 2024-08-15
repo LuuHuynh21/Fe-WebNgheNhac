@@ -25,6 +25,7 @@ export class AlbumService {
     const formData: FormData = new FormData();
     formData.append('ma', album.ma.toString());
     formData.append('ten', album.ten.toString());
+    formData.append('trangThai', album.trangThai.toString());
     formData.append('ngheSi', album.ngheSi.id.toString());
     formData.append('hinhAnh', file);
     if (album.ngayTao) {
@@ -35,16 +36,12 @@ export class AlbumService {
     }  
     return this.http.post<Album>(this.apiUrl, formData);
   }
-  getAlbumById(id: number): Observable<BaiHat[]> {
-    return this.http.get<BaiHat[]>(`${this.apiUrl}/${id}`);
-  }
+  
   searchAlbum(ten: string): Observable<Album[]> {
     let params = new HttpParams().set('ten',ten);
     return this.http.get<Album[]>(`${this.apiUrl}/search`,{params});
   }
-  getTongAlbum(): Observable< number > {
-    return this.http.get< number>(`${this.apiUrl}/tong-album`);
-  }
+  
   getByID(id: number): Observable<Album> {
     const url = `${this.apiUrl}/detail/${id}`;
     return this.http.get<Album>(url);
@@ -53,6 +50,7 @@ export class AlbumService {
     const formData: FormData = new FormData();
     formData.append('ma', album.ma.toString());
     formData.append('ten', album.ten.toString());
+    formData.append('trangThai', album.trangThai.toString());
     formData.append('ngheSi', album.ngheSi.id.toString());
     if (file) {
       formData.append('hinhAnh', file);

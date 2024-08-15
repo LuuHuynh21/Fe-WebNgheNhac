@@ -29,7 +29,7 @@ export class NgheSiDetailComponent implements OnInit {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/nghesi']);
+    this.router.navigate(['/admin/nghesi']);
   }
 
   getDetail(id: number) {
@@ -39,10 +39,16 @@ export class NgheSiDetailComponent implements OnInit {
   }
 
   updateNgheSi() {
-    if (this.ngheSi && this.selectedFile) {
-      this.ngheSiService.updateTL(+this.ngheSi.id, this.ngheSi, this.selectedFile).subscribe((response: NgheSi) => {
-        this.router.navigate(['/nghesi']);  // Chuyển về trang chính sau khi cập nhật thành công
-      });
+    if (this.ngheSi) {
+      if (this.selectedFile) {
+        this.ngheSiService.updateNS(+this.ngheSi.id, this.ngheSi, this.selectedFile).subscribe((response: NgheSi) => {
+          this.router.navigate(['/admin/nghesi']);  // Chuyển về trang chính sau khi cập nhật thành công
+        });
+      } else {
+        this.ngheSiService.updateNS(this.ngheSi.id, this.ngheSi).subscribe((response: NgheSi) => {
+          this.router.navigate(['/admin/nghesi']);  // Redirect to main page after successful update
+        });
+      }
     }
   }
 }

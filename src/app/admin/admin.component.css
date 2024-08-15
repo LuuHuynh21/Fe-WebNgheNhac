@@ -1,0 +1,18 @@
+footer .track-art img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /* This ensures the image maintains its aspect ratio */
+    border-radius: 50%; /* Optional: to make the image circular */
+  }
+  .custom-text {
+    font-size: 14px; /* Kích thước chữ nhỏ */
+    font-family: 'Arial', sans-serif; /* Chọn font chữ phù hợp */
+    color: #ee5252; /* Màu chữ */
+    font-weight: 600; /* Độ đậm của chữ */
+    letter-spacing: 0.5px; /* Khoảng cách giữa các chữ */
+    text-transform: uppercase; /* Viết hoa tất cả các chữ */
+    background-color: #f0f0f0; /* Màu nền nhạt */
+    padding: 5px 10px; /* Khoảng cách giữa chữ và viền */
+    border-radius: 5px; /* Bo tròn góc viền */
+  }
+  

@@ -12,6 +12,21 @@
                [(ngModel)]="theLoai.ten">
       </div>
       <div class="mb-3">
+        <label class="form-label">Trạng Thái</label>
+        <div>
+          <label>
+            <input type="radio" name="trangThai" [(ngModel)]="theLoai.trangThai" [value]="true">
+            Hoạt động
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="trangThai" [(ngModel)]="theLoai.trangThai" [value]="false">
+            Ngừng hoạt động
+          </label>
+        </div>
+      </div>
+      <div class="mb-3">
         <label for="moTa" class="form-label">Mô Tả</label>
         <textarea class="form-control" id="moTa" name="moTa" rows="3"
                   [(ngModel)]="theLoai.moTa"></textarea>

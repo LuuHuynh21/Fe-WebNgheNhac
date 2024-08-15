@@ -25,6 +25,7 @@ export class BaihatService {
     const formData: FormData = new FormData();
     formData.append('ma', baiHat.ma.toString());
     formData.append('ten', baiHat.ten.toString());
+    formData.append('trangThai', baiHat.trangThai.toString());
     formData.append('thoiLuong', baiHat.thoiLuong.toString());
     formData.append('luotNghe', baiHat.luotNghe.toString());
     formData.append('ngheSi', baiHat.ngheSi.id.toString());
@@ -45,17 +46,16 @@ export class BaihatService {
     return this.http.get<BaiHat[]>(`${this.apiUrl}/search`,{params});
   }
 
-  getTongLuotNghe(): Observable< number > {
-    return this.http.get< number>(`${this.apiUrl}/tong-luot-nghe`);
-  }
+ 
   getByID(id: number): Observable<BaiHat> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<BaiHat>(url);
   }
-  updateBH(id: number, baiHat: BaiHat, mp3: File): Observable<BaiHat> {
+  updateBH(id: number, baiHat: BaiHat, mp3?: File): Observable<BaiHat> {
     const formData: FormData = new FormData();
     formData.append('ma', baiHat.ma.toString());
     formData.append('ten', baiHat.ten.toString());
+    formData.append('trangThai', baiHat.trangThai.toString());
     formData.append('thoiLuong', baiHat.thoiLuong.toString());
     formData.append('ngheSi', baiHat.ngheSi.id.toString());
     formData.append('album', baiHat.album.id.toString());

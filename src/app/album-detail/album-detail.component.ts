@@ -34,7 +34,7 @@ export class AlbumDetailComponent implements OnInit{
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/album']);
+    this.router.navigate(['/admin/album']);
   }
 
   getDetail(id: number) {
@@ -53,11 +53,11 @@ export class AlbumDetailComponent implements OnInit{
     if (this.album) {
       if (this.selectedFile) {
         this.albumService.updateAB(this.album.id, this.album, this.selectedFile).subscribe((response: Album) => {
-          this.router.navigate(['/album']);  // Redirect to main page after successful update
+          this.router.navigate(['/admin/album']);  // Redirect to main page after successful update
         });
       } else {
         this.albumService.updateAB(this.album.id, this.album).subscribe((response: Album) => {
-          this.router.navigate(['/album']);  // Redirect to main page after successful update
+          this.router.navigate(['/admin/album']);  // Redirect to main page after successful update
         });
       }
     }

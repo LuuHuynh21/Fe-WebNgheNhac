@@ -14,6 +14,7 @@ export class NghesiComponent implements OnInit {
     id: 0,
     ma: '',
     ten: '',
+    trangThai:true,
     moTa: '',
     hinhAnh: '',
     ngayTao: new Date()
@@ -46,6 +47,7 @@ export class NghesiComponent implements OnInit {
           id: 0,
           ma: '',
           ten: '',
+          trangThai:true,
           moTa: '',
           hinhAnh: '',
           ngayTao: new Date()

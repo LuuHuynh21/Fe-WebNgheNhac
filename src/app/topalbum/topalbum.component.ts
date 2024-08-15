@@ -8,6 +8,7 @@ import { AlbumService } from '../album/album.service';
 import { NghesiService } from '../nghesi/nghesi.service';
 import { TheloaiService } from '../theloai/theloai.service';
 import { Router } from '@angular/router';
+import { HomeService } from '../home/home.service';
 
 
 @Component({
@@ -20,11 +21,14 @@ export class TopalbumComponent {
   ngheSis: NgheSi[] = [];
   theLoais: TheLoai[] = [];
   baiHats: BaiHat[] = [];
+  currentPage = 0;
+  totalPages = 0;
+
   constructor(private baiHatService: BaihatService,
-    private albumService: AlbumService,
     private ngheSiService: NghesiService,
     private theLoaiService: TheloaiService,
-    private router: Router
+    private router: Router,
+    private homeService : HomeService
     // private musicService: MusicService
   ) { }
 
@@ -47,10 +51,11 @@ export class TopalbumComponent {
     })
   }
   loadAlbum() {
-    this.albumService.getAll().subscribe(response => {
-      this.albums = response;
-      console.log(this.albums)
-    })
+    this.homeService.phanTrangAB(this.currentPage, 5).subscribe(response => {
+      this.albums = response.content;
+      this.totalPages = response.totalPages;
+      console.log(this.albums);
+    });
   }
   loadNgheSi() {
     this.ngheSiService.getAll().subscribe(response => {
@@ -59,6 +64,6 @@ export class TopalbumComponent {
     })
   }
   goToAlbumDetails(albumId: number) {
-    this.router.navigate(['/topAB', albumId]);
+    this.router.navigate(['/user/topAB', albumId]);
   }
 }

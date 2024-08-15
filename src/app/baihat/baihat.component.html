@@ -19,6 +19,7 @@
                     <th scope="col">Album</th>
                     <th scope="col">Nghệ Sĩ</th>
                     <th scope="col">Thể Loại</th>
+                    <th scope="col">Trạng Thái</th>
                     <th scope="col">Bài Hát</th>
                     <th scope="col">Thời Lượng</th>
                     <th scope="col">Thao Tác</th>
@@ -31,10 +32,11 @@
                     <td>{{baihat.album.ten}}</td>
                     <td>{{baihat.ngheSi.ten}}</td>
                     <td>{{baihat.theLoai.ten}}</td>
+                    <td>{{baihat.trangThai? 'Hoạt Động':'Ngừng Hoạt Động'}}</td>
                     <td><audio controls [src]="baihat.url"></audio></td>
                     <td>{{baihat.thoiLuong}}</td>
                     <td>
-                        <button class="btn btn-warning btn-sm" [routerLink]="['/baihat', baihat.id]">Sửa</button>
+                        <button class="btn btn-warning btn-sm" [routerLink]="['/admin/baihat', baihat.id]">Sửa</button>
                     </td>
                 </tr>
             </tbody>

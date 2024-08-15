@@ -17,6 +17,7 @@
         <tr>
             <th>ID</th>
             <th>Tên</th>
+            <th>Trạng Thái</th>
             <th>Mô tả</th>
             <th>Thao Tác</th>
         </tr>
@@ -25,9 +26,10 @@
         <tr *ngFor="let theloai of theloais">
             <td>{{theloai.id}}</td>
             <td>{{theloai.ten}}</td>
+            <td>{{theloai.trangThai ? 'Hoạt Động':'Ngừng Hoạt Động'}}</td>
             <td>{{theloai.moTa}}</td>
             <td>
-                <button class="btn btn-warning btn-sm" [routerLink]="['/theloai', theloai.id]">Sửa</button>
+                <button class="btn btn-warning btn-sm" [routerLink]="['/admin/theloai', theloai.id]">Sửa</button>
             </td>
         </tr>
     </tbody>

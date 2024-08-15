@@ -41,7 +41,5 @@ export class TheloaiService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<TheLoai>(url);
   }
-  getTheLoaiById(theLoaiId: number): Observable<BaiHat[]> {
-    return this.http.get<BaiHat[]>(`${this.apiUrl}/bai-hat/${theLoaiId}`);
-  }
+
 }

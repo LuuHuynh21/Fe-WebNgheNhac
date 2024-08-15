@@ -6,6 +6,7 @@ export interface BaiHat{
     id: number;
     ma: string;
     ten: string;
+    trangThai: boolean;
     thoiLuong: string;
     url: string;
     album: Album;

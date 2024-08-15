@@ -6,6 +6,7 @@ export interface Album{
   id: number;
   ma: string;
   ten: string;
+  trangThai: boolean;
   ngheSi: NgheSi;
   hinhAnh: string;
   ngayTao?: Date;

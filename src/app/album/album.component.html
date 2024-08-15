@@ -18,6 +18,7 @@
             <th scope="col">Id</th>
             <th scope="col">Hình Ảnh</th>
             <th scope="col">Tên</th>
+            <th scope="col">Trạng Thái</th>
             <th scope="col">Nghệ Sĩ</th>
             <th scope="col">Thao Tác</th>
         </tr>
@@ -27,9 +28,10 @@
             <td>{{album.id}}</td>
             <td><img [src]="album.hinhAnh" alt="Hình ảnh" width="70" height="70"></td>
             <td>{{album.ten}}</td>
+            <td>{{album.trangThai ? 'Hoạt Động':'Ngừng Hoạt Động'}}</td>
             <td>{{album.ngheSi.ten}}</td>
             <td>
-                <button class="btn btn-warning btn-sm" [routerLink]="['/album', album.id]">Sửa</button>
+                <button class="btn btn-warning btn-sm" [routerLink]="['/admin/album', album.id]">Sửa</button>
             </td>
         </tr>
     </tbody>

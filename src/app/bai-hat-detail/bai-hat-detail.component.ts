@@ -44,7 +44,7 @@ export class BaiHatDetailComponent implements OnInit {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/baihat']);
+    this.router.navigate(['/admin/baihat']);
   }
 
   getDetail(id: number) {
@@ -72,7 +72,11 @@ export class BaiHatDetailComponent implements OnInit {
     if (this.baiHat) {
       if (this.selectedFile) {
         this.baiHatService.updateBH(this.baiHat.id, this.baiHat, this.selectedFile).subscribe((response: BaiHat) => {
-          this.router.navigate(['/baihat']);  // Redirect to main page after successful update
+          this.router.navigate(['/admin/baihat']);  // Redirect to main page after successful update
+        });
+      } else {
+        this.baiHatService.updateBH(this.baiHat.id, this.baiHat).subscribe((response: BaiHat) => {
+          this.router.navigate(['/admin/baihat']);  // Redirect to main page after successful update
         });
       }
     }

@@ -22,7 +22,7 @@ export class TheLoaiDetailComponent implements OnInit {
     this.getDetail(this.id);
   }
   navigateToHome(): void {
-    this.router.navigate(['/theloai']); // Use the injected Router service to navigate to the home page
+    this.router.navigate(['/admin/theloai']); // Use the injected Router service to navigate to the home page
   }
 
   getDetail(id: number) {
@@ -34,7 +34,7 @@ export class TheLoaiDetailComponent implements OnInit {
   updateTheLoai() {
     if (this.theLoai) {
       this.theloaiService.updateTL(+this.theLoai.id, this.theLoai).subscribe((response: TheLoai) => {
-        this.router.navigate(['/theloai']);  // Chuyển về trang chính sau khi cập nhật thành công
+        this.router.navigate(['/admin/theloai']);  // Chuyển về trang chính sau khi cập nhật thành công
       });
     }
   }

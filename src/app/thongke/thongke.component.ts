@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaihatService } from '../baihat/baihat.service';
 import { AlbumService } from '../album/album.service';
 import { NghesiService } from '../nghesi/nghesi.service';
+import { ThongkeService } from './thongke.service';
 
 @Component({
   selector: 'app-thongke',
@@ -13,7 +14,7 @@ export class ThongkeComponent implements OnInit{
   tongAlbum: number = 0;
   tongNgheSi: number = 0;
 
-  constructor(private baihatService: BaihatService,private albumService: AlbumService, private ngheSiService: NghesiService) { }
+  constructor( private thongKeService: ThongkeService) { }
 
   ngOnInit(): void {
     this.loadTongLuotNghe();
@@ -22,7 +23,7 @@ export class ThongkeComponent implements OnInit{
   }
 
   loadTongLuotNghe(): void {
-    this.baihatService.getTongLuotNghe().subscribe(
+    this.thongKeService.getTongLuotNghe().subscribe(
       response => {
         this.tongLuotNghe = response;
       },
@@ -33,7 +34,7 @@ export class ThongkeComponent implements OnInit{
   }
 
   loadTongAlbum(): void {
-    this.albumService.getTongAlbum().subscribe(
+    this.thongKeService.getTongAlbum().subscribe(
       response => {
         this.tongAlbum = response;
       },
@@ -43,7 +44,7 @@ export class ThongkeComponent implements OnInit{
     );
   }
   loadTongNgheSi(): void {
-    this.ngheSiService.getTongNgheSi().subscribe(
+    this.thongKeService.getTongNgheSi().subscribe(
       response => {
         this.tongNgheSi = response;
       },

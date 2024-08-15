@@ -14,6 +14,7 @@ export class TheloaiComponent implements OnInit {
     id: 0,
     ma: '',
     ten: '',
+    trangThai: true,
     moTa: '',
     ngayTao: new Date(),
    
@@ -41,6 +42,7 @@ export class TheloaiComponent implements OnInit {
         id: 0,
         ma: '',
         ten: '',
+        trangThai: true,
         moTa: '',
         ngayTao: new Date()
       };

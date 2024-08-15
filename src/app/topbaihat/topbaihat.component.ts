@@ -8,6 +8,8 @@ import { AlbumService } from '../album/album.service';
 import { NghesiService } from '../nghesi/nghesi.service';
 import { TheloaiService } from '../theloai/theloai.service';
 import { MusicService } from '../music.service';
+import { TopbaihatService } from './topbaihat.service';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-topbaihat',
@@ -19,8 +21,10 @@ export class TopbaihatComponent implements OnInit {
   ngheSis: NgheSi[] = [];
   theLoais: TheLoai[] = [];
   baiHats: BaiHat[] = [];
+  currentPage = 0;
+  totalPages = 0;
 
-  constructor(private baiHatService: BaihatService,
+  constructor(private homeService: HomeService,
               private albumService: AlbumService,
               private ngheSiService: NghesiService,
               private theLoaiService: TheloaiService,
@@ -34,8 +38,8 @@ export class TopbaihatComponent implements OnInit {
     this.loadNgheSi();
   }
   loadBaiHat() {
-    this.baiHatService.getAll().subscribe(response => {
-      this.baiHats = response;
+    this.homeService.phanTrangBH(this.currentPage,100).subscribe(response => {
+      this.baiHats = response.content;
       this.musicService.songList = this.baiHats;
       console.log(this.baiHats);
     });

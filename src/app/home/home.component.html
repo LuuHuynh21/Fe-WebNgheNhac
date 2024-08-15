@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isSearching">
     <img src="assets/images/anhchill.png" alt="Khung cảnh đêm yên bình" class="image-container">
     <div class="text">
         <h5>Nghe Nhạc Huỳnh Music</h5>
@@ -6,14 +6,27 @@
     </div>
 </div>
 <div class="search-container">
-    <form class="form-inline">
+    <form class="form-inline" (submit)="search()">
         <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm nghệ sĩ, album, bài hát"
-            aria-label="Search">
+            aria-label="Search" [(ngModel)]="ten" name="ten">
         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Tìm kiếm</button>
     </form>
 </div>
 
-<div>
+<div *ngIf="isSearching && searchResults.length > 0">
+    <h4>Kết quả tìm kiếm</h4>
+    <div class="search-results">
+        <div *ngFor="let result of searchResults">
+            <div *ngIf="result.ten">
+                <h5>{{ result.ten }}</h5>
+                <p *ngIf="result.ngheSi">Nghệ sĩ: {{ result.ngheSi.ten }}</p>
+                <p *ngIf="result.album">Album: {{ result.album.ten }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isSearching">
     <h4 class="heading-with-pagination1">
         Nghe Gì Hôm Nay?
         <div class="pagination-controls1">
@@ -45,7 +58,7 @@
     </div>
 </div>
 
-<div>
+<div *ngIf="!isSearching">
     <h4 class="heading-with-pagination">
         List Album
         <div class="pagination-controls">
@@ -72,28 +85,29 @@
         </div>
     </div>
 </div>
-<div>
+
+<div *ngIf="!isSearching">
     <div class="song-list1">
         <div *ngFor="let theLoai of theLoais" class="genre-section">
-          <h4>Thể Loại {{ theLoai.ten }}</h4>
-          <div class="song-item-container1">
-            <div *ngFor="let baiHat of baiHatsByGenre[+theLoai.id]" class="song-item" (click)="playSong(baiHat)">
-              <div class="image-container1">
-                <img [src]="baiHat.ngheSi.hinhAnh" alt="{{ baiHat.ten }}" class="artist-image">
-                <button class="play-button">
-                  <i class="fa fa-play"></i>
-                </button>
-                <div class="song-luotnghe1">
-                  <i class="fa fa-headphones"></i>
-                  {{ baiHat.luotNghe }}
+            <h4>Thể Loại {{ theLoai.ten }}</h4>
+            <div class="song-item-container1">
+                <div *ngFor="let baiHat of baiHatsByGenre[+theLoai.id]" class="song-item" (click)="playSong(baiHat)">
+                    <div class="image-container1">
+                        <img [src]="baiHat.ngheSi.hinhAnh" alt="{{ baiHat.ten }}" class="artist-image">
+                        <button class="play-button">
+                            <i class="fa fa-play"></i>
+                        </button>
+                        <div class="song-luotnghe1">
+                            <i class="fa fa-headphones"></i>
+                            {{ baiHat.luotNghe }}
+                        </div>
+                    </div>
+                    <div class="song-details1">
+                        <h4>{{ baiHat.ten }}</h4>
+                        <p>{{ baiHat.ngheSi.ten }}</p>
+                    </div>
                 </div>
-              </div>
-              <div class="song-details1">
-                <h4>{{ baiHat.ten }}</h4>
-                <p>{{ baiHat.ngheSi.ten }}</p>
-              </div>
             </div>
-          </div>
         </div>
-      </div>      
+    </div>      
 </div>

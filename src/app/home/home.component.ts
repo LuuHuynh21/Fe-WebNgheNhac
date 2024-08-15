@@ -9,6 +9,7 @@ import { NghesiService } from '../nghesi/nghesi.service';
 import { TheloaiService } from '../theloai/theloai.service';
 import { MusicService } from '../music.service';
 import { Router } from '@angular/router';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +27,16 @@ export class HomeComponent implements OnInit {
   
   currentPageAlbum = 0;
   totalPagesAlbum = 0;
+
+  currentPageTL = 0;
+  totalPagesTL = 0;
+
+  isSearching: boolean = false;
+  ten: string = '';
+  searchResults: any[] = [];
   baiHatsByGenre: { [key: number]: BaiHat[] } = {};
 
-  constructor(private baiHatService: BaihatService,
-              private albumService: AlbumService,
+  constructor(private homeService: HomeService,
               private ngheSiService: NghesiService,
               private theLoaiService: TheloaiService,
               private musicService: MusicService,
@@ -43,7 +50,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadBaiHat() {
-    this.baiHatService.phanTrang(this.currentPageBaiHat, 5).subscribe(response => {
+    this.homeService.phanTrangBHHome(this.currentPageBaiHat, 5).subscribe(response => {
       this.baiHats = response.content;
       this.totalPagesBaiHat = response.totalPages;
       this.musicService.songList = this.baiHats;
@@ -52,15 +59,16 @@ export class HomeComponent implements OnInit {
   }
 
   loadTheLoai() {
-    this.theLoaiService.getAll().subscribe(response => {
-      this.theLoais = response;
+    this.homeService.phanTrangTL(this.currentPageTL,5).subscribe(response => {
+      this.theLoais = response.content;
+      this.totalPagesTL = response.totalPages;
       this.loadSongsForAllGenres();
       console.log(this.theLoais);
     });
   }
 
   loadAlbum() {
-    this.albumService.phanTrang(this.currentPageAlbum, 5).subscribe(response => {
+    this.homeService.phanTrangAB(this.currentPageAlbum, 5).subscribe(response => {
       this.albums = response.content;
       this.totalPagesAlbum = response.totalPages;
       console.log(this.albums);
@@ -88,7 +96,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToAlbumDetails(albumId: number) {
-    this.router.navigate(['/topAB', albumId]);
+    this.router.navigate(['/user/topAB', albumId]);
   }
 
   nextPageBaiHat() {
@@ -120,9 +128,17 @@ export class HomeComponent implements OnInit {
   }
   loadSongsForAllGenres() {
     this.theLoais.forEach(theLoai => {
-      this.theLoaiService.getTheLoaiById(+theLoai.id).subscribe(songs => {
+      this.homeService.getTheLoaiById(+theLoai.id).subscribe(songs => {
         this.baiHatsByGenre[+theLoai.id] = songs;
       });
     });
+  }
+  search(): void {
+    if (this.ten.trim()) {
+      this.isSearching = true;
+      this.homeService.search(this.ten).subscribe((data: any[]) => {
+        this.searchResults = data;
+      });
+    }
   }
 }

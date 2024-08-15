@@ -1,10 +1,10 @@
 import { Component,OnInit } from '@angular/core';
 import { BaiHat } from '../baihat/baihat.model';
 import { ActivatedRoute } from '@angular/router';
-import { AlbumService } from '../album/album.service';
-import { BaihatService } from '../baihat/baihat.service';
 import { Album } from '../album/album.model';
 import { MusicService } from '../music.service';
+
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-view-album',
@@ -15,7 +15,7 @@ export class ViewAlbumComponent implements OnInit {
   baiHats: BaiHat[] = [];
   album: Album | null = null;
 
-  constructor(private route: ActivatedRoute, private albumService: AlbumService, private musicService: MusicService) {}
+  constructor(private route: ActivatedRoute, private homeService: HomeService, private musicService: MusicService) {}
 
   ngOnInit(): void {
     const albumId = this.route.snapshot.paramMap.get('id');
@@ -25,7 +25,7 @@ export class ViewAlbumComponent implements OnInit {
   }
 
   loadSongsByAlbumId(id: number) {
-    this.albumService.getAlbumById(id).subscribe(response => {
+    this.homeService.getAlbumById(id).subscribe(response => {
       this.baiHats = response;
       this.musicService.songList = this.baiHats;
       console.log(this.baiHats);

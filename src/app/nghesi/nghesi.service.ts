@@ -23,6 +23,7 @@ export class NghesiService {
     const formData: FormData = new FormData();
     formData.append('ma', ngheSi.ma.toString());
     formData.append('ten', ngheSi.ten.toString());
+    formData.append('trangThai', ngheSi.trangThai.toString());
     formData.append('moTa', ngheSi.moTa.toString());
     formData.append('hinhAnh', file);
     if (ngheSi.ngayTao) {
@@ -37,17 +38,16 @@ export class NghesiService {
     let params = new HttpParams().set('ten',ten);
     return this.http.get<NgheSi[]>(`${this.apiUrl}/search`,{params});
   }
-  getTongNgheSi(): Observable< number > {
-    return this.http.get< number>(`${this.apiUrl}/tong-nghe-si`);
-  }
+  
   getByID(id: number): Observable<NgheSi> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<NgheSi>(url);
   }
-  updateTL(id: number, ngheSi: NgheSi, file?: File): Observable<NgheSi> {
+  updateNS(id: number, ngheSi: NgheSi, file?: File): Observable<NgheSi> {
     const formData: FormData = new FormData();
     formData.append('ma', ngheSi.ma.toString());
     formData.append('ten', ngheSi.ten.toString());
+    formData.append('trangThai', ngheSi.trangThai.toString());
     formData.append('moTa', ngheSi.moTa.toString());
     if (file) {
       formData.append('hinhAnh', file);
