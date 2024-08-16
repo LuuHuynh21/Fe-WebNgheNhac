@@ -24,7 +24,7 @@ export class NguoidungService {
     formData.append('trangThai', nguoiDung.trangThai.toString());
     formData.append('ngaySinh', nguoiDung.ngaySinh);
     formData.append('gioiTinh', nguoiDung.gioiTinh.toString());
-    formData.append('vaiTro', nguoiDung.vaiTro.id.toString());
+    formData.append('vaiTro', nguoiDung.vaiTro.toString());
     if (nguoiDung.ngayTao) {
       formData.append('ngayTao', nguoiDung.ngayTao.toISOString());
     }
@@ -43,7 +43,7 @@ export class NguoidungService {
     formData.append('matKhau', nguoiDung.matKhau.toString());
     formData.append('ngaySinh', nguoiDung.ngaySinh.toString());
     formData.append('gioiTinh', nguoiDung.gioiTinh.toString());
-    formData.append('vaiTro', nguoiDung.vaiTro.id.toString());
+    formData.append('vaiTro', nguoiDung.vaiTro.toString());
 
     formData.append('ngaySua', new Date().toISOString()); // Cập nhật ngày sửa
 

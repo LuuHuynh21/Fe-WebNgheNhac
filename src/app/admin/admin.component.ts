@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+  constructor(private authService: LoginService, private router: Router) {}
 
+  logout() {
+    // Xóa token khỏi localStorage
+    this.authService.logout();
+
+    // Điều hướng về trang đăng nhập
+    this.router.navigate(['/login']);
+  }
 }

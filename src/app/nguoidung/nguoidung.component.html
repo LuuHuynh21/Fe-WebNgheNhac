@@ -34,7 +34,7 @@
             <td>{{nguoiDung.trangThai? 'Hoạt Động':'Ngừng Hoạt Động'}}</td>
             <td>{{ nguoiDung.ngaySinh | date:'dd/MM/yyyy' }}</td>
             <td>{{nguoiDung.gioiTinh}}</td>
-            <td>{{nguoiDung.vaiTro.ten}}</td>
+            <td>{{nguoiDung.vaiTro}}</td>
             <td>
                 <button class="btn btn-warning btn-sm" [routerLink]="['/nguoidung', nguoiDung.id]">Sửa</button>
             </td>
@@ -83,13 +83,13 @@
                     </div>
                     <label for="">Vai Trò</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" checked value="1" [(ngModel)]="newNguoiDung.vaiTro.id"  >
+                        <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" checked value="1" [(ngModel)]="newNguoiDung.vaiTro"  >
                         <label class="form-check-label" for="flexRadioDisabled">
                           Admin
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled"  value="2" [(ngModel)]="newNguoiDung.vaiTro.id" >
+                        <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled"  value="2" [(ngModel)]="newNguoiDung.vaiTro" >
                         <label class="form-check-label" for="flexRadioCheckedDisabled">
                           User
                         </label>

@@ -17,10 +17,11 @@ export class LoginService {
   login(email: string, matKhau: string): Observable<Login> {
     return this.http.post<Login>(`${this.apiUrl}/login`, { email, matKhau });
   }
+
+  // Hàm gọi API để làm mới token
   refreshToken(token: string): Observable<Refesh> {
-    return this.http.post<Refesh>(`${this.apiUrl}/refesh`, {token});
+    return this.http.post<Refesh>(`${this.apiUrl}/refesh`, { token });
   }
-  
 
   // Lưu token và refreshToken vào localStorage
   saveTokens(tokens: { token: string, refeshToken: string }) {
@@ -43,4 +44,6 @@ export class LoginService {
   getRefreshToken() {
     return localStorage.getItem('refreshToken');
   }
+
+  
 }

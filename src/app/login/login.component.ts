@@ -18,10 +18,10 @@ export class LoginComponent {
     this.authService.login(this.email, this.matKhau).subscribe({
       next: (response) => {
         this.authService.saveTokens({ token: response.token, refeshToken: response.refeshToken });
-        // Chuyển hướng đến /admin và sau đó tải lại trang
+        
+        // Điều hướng đến trang admin và reload trang để sử dụng token mới nhất
         this.router.navigate(['/admin']).then(() => {
-          // Đợi điều hướng hoàn tất trước khi tải lại trang
-          location.reload();
+          location.reload();  // Reload trang để đảm bảo sử dụng token mới nhất
         });
       },
       error: (err) => {

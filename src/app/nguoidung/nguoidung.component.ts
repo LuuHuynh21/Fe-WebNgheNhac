@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NguoiDung } from './nguoidung.model';
 import { NguoidungService } from './nguoidung.service';
+import { VaiTro } from '../vaitro/vaitro.model';
 
 @Component({
   selector: 'app-nguoidung',
@@ -20,10 +21,7 @@ export class NguoidungComponent implements OnInit {
     ngaySinh: '',
     gioiTinh: '',
     ngayTao: new Date(),
-    vaiTro: {
-      id: 0,
-      ten: ''
-    }
+    vaiTro: VaiTro.USER,
   }
 
   constructor(private nguoiDungService: NguoidungService) { }
@@ -53,10 +51,7 @@ export class NguoidungComponent implements OnInit {
         ngaySinh: '',
         gioiTinh: '',
         ngayTao: new Date(),
-        vaiTro: {
-          id: 0,
-          ten: ''
-        }
+        vaiTro: VaiTro.USER,
       };
     })
   }

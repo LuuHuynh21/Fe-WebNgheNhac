@@ -25,6 +25,7 @@ import { BaihatComponent } from './baihat/baihat.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginService } from './login/login.service';
 
 
 
@@ -60,6 +61,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule
   ],
   providers: [
+    LoginService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-export interface VaiTro{
-    id: number;
-    ten: string;
+export enum VaiTro{
+     ADMIN = 'ADMIN',
+  USER = 'USER'
 }
